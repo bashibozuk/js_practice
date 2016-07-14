@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	
+#box {
+	width: 100px;
+	height:100px;
+	background-color: red;
+	position: absolute;
+}	
+</style>
+<script>
+	var KEY_LEFT= 37;
+	var KEY_RIGHT = 39;
+	var position = {
+		top:0,
+		left: 0
+	};
+	
+	var moveLeft = false;
+	var moveRight = false;
+	var speed = 3;
+
+	function onFrame() {
+		if (moveLeft) {
+			position.left -= speed;
+		}		
+		if (moveRight) {
+			position.left += speed;
+		}
+		
+		document.querySelector('#box').style.left = position.left + 'px';
+		
+		requestAnimationFrame(onFrame);
+	}
+
+	requestAnimationFrame(onFrame);
+
+	document.addEventListener('keydown', function(e) {
+		if (e.keyCode == KEY_LEFT) {
+			moveLeft = true;
+		}
+
+		if (e.keyCode == KEY_RIGHT) {
+			moveRight = true;
+		}
+	}, false);
+
+	document.addEventListener('keyup', function(e) {
+                if (e.keyCode == KEY_LEFT) {
+                        moveLeft = false;
+                }
+
+                if (e.keyCode == KEY_RIGHT) {
+                        moveRight = false;
+                }
+        }, false);
+</script>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
