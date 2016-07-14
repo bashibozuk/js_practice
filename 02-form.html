@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body {
+		font-family: 'Arial, Heevetica', sans-serif;
+	}
+	
+	
+	form {
+		width: 50%;
+		margin: 0 auto;
+	}
+	
+	form label {
+		display: block;
+		font-weight: bold;
+	}
+	
+	form input {
+		width: 99%;
+		padding: 0.5em;
+		border-radius: 6px;
+		border: 1px solid grey;
+	}
+	
+	form input:focus {
+		outline: none;
+	}
+	
+	form div.error input{
+		border: 1px solid red;
+	}
+	
+	form div.error p{
+		color:red;
+		font-weight: bold;
+	}
+	
+	
+</style>
+<script type="text/javascript" src="validation.js"></script>
+</head>
+<body>
+	<form action="">
+		<div class="error">
+			<label for="name">Name</label>
+			<input type="text"  id="name"/>
+			<p>Error Message</p>
+		</div>
+		<div>
+			<label for="date-of-birth">Date Of Birth</label>
+			<input type="text" id="date-of-birth"/>
+			<p></p>
+		</div>
+		<div>
+			<label for="phone">Phone</label>
+			<input type="text" id="phone"/>
+			<p></p>
+		</div>
+		<div>
+			<label for="email">Email</label>
+			<input type="email" id="email"/>
+			<p></p>
+		</div>
+		<div>
+			<button type="submit">Send Me</button>
+		</div>
+	</form>
+</body>
+</html>

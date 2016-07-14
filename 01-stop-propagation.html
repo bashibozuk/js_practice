@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	div {
+		width: 200px;
+		height: 100px;
+		border: 1px dotted red;
+		padding: 1em;
+	}
+
+</style>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', function() {
+	
+	var div = document.querySelector('div');
+	var btn1 = document.querySelector('#btn-1');
+	var btn2 = document.querySelector('#btn-2');
+	
+	var checkbox = document.querySelector('input[type=checkbox]')
+	
+	div.addEventListener('click', function() {
+		var bgColor = div.style.backgroundColor;
+		div.style.backgroundColor = bgColor == 'red' ? 'blue' : 'red';
+	}, false)
+	
+	btn1.addEventListener('click', function() {
+		alert('Btn 1 pressed');
+	}, false)
+	
+	btn2.addEventListener('click', function(event) {
+		//event.stopPropagation();
+		if (checkbox.checked) {
+			event.stopImmediatePropagation();
+		}
+		
+		alert('Btn 2 pressed');
+	}, false);
+	
+	btn2.addEventListener('click', function(event) {
+		alert('Btn 2 pressed listener 2');
+	}, false);
+	
+	document.querySelector('a').addEventListener('click', function(event) {
+		event.preventDefault();
+		alert('Link clicked');
+	}, false)
+}, false);
+
+</script>
+</head>
+<body>
+	<div>
+		<button id="btn-1">Btn 1</button>
+		<button id="btn-2">Btn 2</button>
+	</div>
+	<a href="http://google.com">Google</a>	
+	<label>Stop<input type="checkbox"></label>
+</body>
+</html>
