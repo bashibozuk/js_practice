@@ -57,11 +57,53 @@ function validEmail(email) {
 }
 
 
-function validateForm() {
+function validateForm(event) {
+	var name = document.getElementById('name');
+	var dob = document.getElementById('date-of-birth');
+	var phone = document.getElementById('phone');
+	var email = document.getElementById('email');
+
+	var result = isValidName(name.value);
+	validateField(name, result, 'Enter at least 3 words');
 	
+	var r1 = isValidDate(dob.value);
+        validateField(dob, r1, 'Enter date of birth in format dd/mm/yyyy');
+
+	result = result && r1;
+
+	var r2 = isValidPhone(phone.value);
+        validateField(phone, r2, 'Enter phone starting with +3598 and containing only digits');
+	result = result && r2;
+
+	var r3 = validEmail(email.value);
+        validateField(email, r3, 'Enter valid email');
+
+	result = result && r3
+	
+
+	if (!result) {
+		event.preventDefault();
+	}
 }
 
 
 function validateField(field, validationResult, message) {
+	var div = field.parentElement;
+	var p = field.nextElementSibling;
+
+	div.className = '';
+	p.innerHTML = '';
 	
+	if (!validationResult) {
+		div.className = 'error';
+		p.innerHTML = message;
+	}
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+	var form = document.querySelector('form');
+
+	form.addEventListener('submit', function(e){
+		validateForm(e);
+	}, false)
+}, false);
